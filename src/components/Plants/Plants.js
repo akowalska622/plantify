@@ -1,4 +1,3 @@
-import classes from './Plants.module.css';
 import PlantsSummary from './PlantsSummary';
 import AvailablePlants from './AvailablePlants';
 

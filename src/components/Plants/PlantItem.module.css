@@ -1,0 +1,28 @@
+.plantPic {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0.5rem;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1.7rem;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #04662c;
+}
+
+hr {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-top: 1px solid #dbdbdb;
+}
+
+.name {
+  background-color: red;
+}

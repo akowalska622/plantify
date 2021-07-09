@@ -6,7 +6,7 @@ const Header = props => {
     <>
       <header className={classes.header}>
         <h1>Plantify</h1>
-        <HeaderCartButton />
+        <HeaderCartButton onCartOpen={props.onCartOpen} />
       </header>
       <div className={classes['main-image']}>
         <img

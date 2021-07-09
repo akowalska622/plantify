@@ -1,11 +1,12 @@
 import classes from './Header.module.css';
+import HeaderCartButton from './HeaderCartButton';
 
 const Header = props => {
   return (
     <>
       <header className={classes.header}>
         <h1>Plantify</h1>
-        <p>Cart placeholder</p>
+        <HeaderCartButton />
       </header>
       <div className={classes['main-image']}>
         <img

@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/UI/Headers';
 import Plants from './components/Plants/Plants';
 import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
 
 function App() {
   const [isCartShown, setIsCartShown] = useState(false);
@@ -17,13 +18,13 @@ function App() {
   };
 
   return (
-    <>
+    <CartProvider>
       {isCartShown && <Cart onCartClose={handleCloseCart} />}
       <Header onCartOpen={handleOpenCart} />
       <main>
         <Plants />
       </main>
-    </>
+    </CartProvider>
   );
 }
 

@@ -3,6 +3,8 @@ import classes from './Checkout.module.css';
 
 const isEmpty = val => val.trim().length === 0;
 const isFiveChars = val => val.trim().length === 5;
+const emailRegex = /\S+@\S+\.\S+/;
+const isValidEmail = val => emailRegex.test(val);
 
 const Checkout = props => {
   const [formInputsValidity, setFormInputValidity] = useState({
@@ -10,12 +12,14 @@ const Checkout = props => {
     street: true,
     city: true,
     postalCode: true,
+    email: true,
   });
 
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const postalInputRef = useRef();
   const cityInputRef = useRef();
+  const emailInputRef = useRef();
 
   const handleConfirm = e => {
     e.preventDefault();
@@ -24,21 +28,28 @@ const Checkout = props => {
     const enteredStreet = streetInputRef.current.value;
     const enteredPostal = postalInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value;
 
     const nameIsValid = !isEmpty(enteredName);
     const streetIsValid = !isEmpty(enteredStreet);
     const cityIsValid = !isEmpty(enteredCity);
     const postalIsValid = isFiveChars(enteredPostal);
+    const emailIsValid = isValidEmail(enteredEmail);
 
     setFormInputValidity({
       name: nameIsValid,
       street: streetIsValid,
       city: cityIsValid,
       postalCode: postalIsValid,
+      email: emailIsValid,
     });
 
     const formIsValid =
-      nameIsValid && streetIsValid && cityIsValid && postalIsValid;
+      nameIsValid &&
+      streetIsValid &&
+      cityIsValid &&
+      postalIsValid &&
+      emailIsValid;
 
     if (!formIsValid) {
       return;
@@ -49,6 +60,7 @@ const Checkout = props => {
       city: enteredCity,
       postalCode: enteredPostal,
       street: enteredStreet,
+      email: enteredEmail,
     });
   };
 
@@ -65,6 +77,17 @@ const Checkout = props => {
           <input type='text' id='name' ref={nameInputRef} />
           {!formInputsValidity.name && (
             <p className={classes.error}>Please enter a valid name</p>
+          )}
+        </div>
+        <div
+          className={`${classes.control} ${
+            formInputsValidity.email ? '' : classes.invalid
+          }`}
+        >
+          <label htmlFor='email'>Email</label>
+          <input type='text' id='email' ref={emailInputRef} />
+          {!formInputsValidity.email && (
+            <p className={classes.error}>Please enter a valid email</p>
           )}
         </div>
         <div

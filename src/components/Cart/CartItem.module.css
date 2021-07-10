@@ -50,12 +50,14 @@
   color: #27ae60;
   border: 1px solid #27ae60;
   width: 3rem;
-  text-align: center;
   border-radius: 6px;
   background-color: transparent;
   cursor: pointer;
   margin-left: 1rem;
   margin: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-item button:hover,

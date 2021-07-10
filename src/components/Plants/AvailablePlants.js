@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import classes from './AvailablePlants.module.css';
 import PlantItem from './PlantItem';
+import { SearchOutline } from 'react-ionicons';
 
 const AvailablePlants = () => {
   const [plantsList, setPlantsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [filterVal, setFilterVal] = useState('');
 
   const fetchPlants = async () => {
     try {
@@ -34,7 +36,15 @@ const AvailablePlants = () => {
     fetchPlants();
   }, []);
 
-  const plantsDisplayed = plantsList.map(plant => (
+  const handleFilter = e => {
+    setFilterVal(e.target.value);
+  };
+
+  const filteredPlants = plantsList.filter(item =>
+    item.name.toLowerCase().includes(filterVal.toLowerCase())
+  );
+
+  const plantsDisplayed = filteredPlants.map(plant => (
     <PlantItem
       key={plant.id}
       name={plant.name}
@@ -45,11 +55,23 @@ const AvailablePlants = () => {
   ));
 
   return (
-    <section className={classes.container}>
-      {!isLoading && plantsDisplayed}
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && plantsDisplayed.length < 1 && <p>No plants found... 😔</p>}
-    </section>
+    <div className={classes.container}>
+      <div className={classes.search}>
+        <SearchOutline color={'#24af60'} height='30px' width='30px' />{' '}
+        <input
+          onChange={handleFilter}
+          className={classes.searchBar}
+          placeholder='Search for a plant'
+        />
+      </div>
+      <section className={classes.plantsContainer}>
+        {!isLoading && plantsDisplayed}
+        {isLoading && <p>Loading...</p>}
+        {!isLoading && plantsDisplayed.length < 1 && (
+          <p>No plants found... 😔</p>
+        )}
+      </section>
+    </div>
   );
 };
 

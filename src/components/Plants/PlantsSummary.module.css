@@ -16,3 +16,9 @@
   font-size: 1.5rem;
   margin-top: 0;
 }
+
+@media (max-width: 550px) {
+  .summary {
+    width: 80%;
+  }
+}

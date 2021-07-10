@@ -12,7 +12,6 @@ const Cart = props => {
 
   const handleCancel = () => {
     setCheckoutShown(false);
-    props.onCartClose();
   };
 
   const cartCtx = useContext(CartContext);
@@ -57,13 +56,18 @@ const Cart = props => {
 
   return (
     <Modal onCartClose={props.onCartClose}>
-      {cartItems}
-      <div className={classes.total}>
-        <span>Total Amount</span>
-        <span>${cartCtx.totalAmount.toFixed(2)}</span>
-      </div>
+      {!checkoutShown && (
+        <>
+          {cartItems}
+          <div className={classes.total}>
+            <span>Total Amount</span>
+            <span>${cartCtx.totalAmount.toFixed(2)}</span>
+          </div>
+          {modalActions}
+        </>
+      )}
+
       {checkoutShown && <Checkout onCancel={handleCancel} />}
-      {!checkoutShown && modalActions}
     </Modal>
   );
 };

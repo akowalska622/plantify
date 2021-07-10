@@ -19,7 +19,7 @@
   text-align: right;
 }
 
-.actions button {
+button {
   font: inherit;
   cursor: pointer;
   background-color: transparent;
@@ -30,18 +30,18 @@
   transition: all 0.2s;
 }
 
-.actions button:hover,
-.actions button:active {
+button:hover,
+button:active {
   background-color: #057f38;
   border-color: #057f38;
   color: white;
 }
 
-.actions .button--alt {
+.button--alt {
   color: #057f38;
 }
 
-.actions .button {
+.button {
   background-color: #27ae60;
   color: white;
 }
